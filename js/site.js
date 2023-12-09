@@ -40,14 +40,14 @@ function StartGame() {
 }
 
 function getTimer() {
-  if (!timerActive) {
-    timerActive = true;
+  
 
     second = suankiSeviye.sure + 1;
     let timerElement = document.getElementById("timer");
     let timerHeader = document.getElementById("timerHeader");
 
     countDown = setInterval(function () {
+      if (!timerActive) {
       second--;
       if (second <= 5) {
         timerHeader.className = "card-header bg-danger text-white";
@@ -58,13 +58,15 @@ function getTimer() {
       timerElement.innerHTML = `<h1 class="text-center">${second}</h1>`;
 
       if (second <= 0) {
-        Alert(false, alertTimeMessage);
-        timerActive = true;
-        startActive = false;
         clearInterval(countDown);
+        timerActive = true;
+        Alert(false, alertTimeMessage);
+        h1RandomNumber.innerText = randomNumber;
+        startActive = false;
       }
+    }
     }, 1000);
-  }
+  
 }
 
 function RandomNumber() {
@@ -77,17 +79,21 @@ function TahminEt() {
     if (hak >= 1) {
       if (parseInt(inputText.value) == randomNumber) {
         h1RandomNumber.innerText = randomNumber;
+        
         SeviyeArttır();
         Alert(true, alertSuccessMessage);
       } else {
         hak--;
         if (hak <= 0) {
+          HakBelirle(hak);
+          h1RandomNumber.innerText = randomNumber;
           timerActive = true;
           startActive = false;
           clearInterval(countDown);
         }
         HakBelirle(hak);
         Alert(false, alertErrorMessage);
+        
       }
     } else {
       timerActive = true;
@@ -95,6 +101,11 @@ function TahminEt() {
       clearInterval(countDown);
     }
   }
+}
+
+function RandomNumberShow()
+{
+
 }
 
 function SeviyeBelirle(level) {
