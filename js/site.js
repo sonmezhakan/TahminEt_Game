@@ -29,6 +29,7 @@ var seviyeler = [
 ];
 
 function StartGame() {
+  h1RandomNumber.innerText = "-";
   seviye = 0;
   SeviyeBelirle(seviye);
   HakBelirle(suankiSeviye.tahminHakki);
@@ -40,8 +41,6 @@ function StartGame() {
 }
 
 function getTimer() {
-  
-
     second = suankiSeviye.sure + 1;
     let timerElement = document.getElementById("timer");
     let timerHeader = document.getElementById("timerHeader");
@@ -101,11 +100,6 @@ function TahminEt() {
       clearInterval(countDown);
     }
   }
-}
-
-function RandomNumberShow()
-{
-
 }
 
 function SeviyeBelirle(level) {
